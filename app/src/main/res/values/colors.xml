@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="light_purple">#F6CEFC</color>>
+    <color name="darker_light_purple">#DBB8E0</color>>
+    <color name="selected_color">#B7F2B8</color>
+    <color name="ddb_red">#C73032</color>
+    <color name="barbarian_f">#E7623E</color>
+    <color name="bard_rogue">#AB6DAC</color>
+    <color name="cleric_silver">#91A1B2</color>
+    <color name="druid_moss">#7A853B</color>
+    <color name="fighter_rust">#7F513E</color>
+    <color name="monk_sky">#51A5C5</color>
+    <color name="paladin_gold">#B59E54</color>
+    <color name="ranger_em">#507F62</color>
+    <color name="rogue_ash">#555752</color>
+    <color name="sorcerer_blood">#992E2E</color>
+    <color name="warlock_iris">#7B469B</color>
+    <color name="wizard_cobalt">#2A50A1</color>
+    <color name="background_grey">#656565</color>
+
+</resources>

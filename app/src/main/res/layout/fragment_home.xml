@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="?android:attr/actionBarSize"
+    tools:context=".ui.home.DiceFragment">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="412dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="?android:attr/actionBarSize"
+
+
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/dice_item" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="110dp"
+        android:alpha="0.25"
+
+        android:background="@color/background_grey"
+        android:src="@drawable/rounded_corner_grey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/dieAmountEditText"
+        android:layout_width="86dp"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:gravity="center"
+        android:text="1d"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.19"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.05" />
+
+    <TextView
+        android:id="@+id/rollBonusEditText"
+        android:layout_width="86dp"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:gravity="center"
+        android:text="+0"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.81"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.95" />
+
+    <ImageButton
+        android:id="@+id/bonusMinusButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="2dp"
+        android:src="@drawable/minus_svgrepo_com"
+        app:layout_constraintBottom_toBottomOf="@+id/rollBonusEditText"
+        app:layout_constraintEnd_toStartOf="@+id/rollBonusEditText"
+        app:layout_constraintTop_toTopOf="@+id/rollBonusEditText" />
+
+    <ImageButton
+        android:id="@+id/dieAmountMinusButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="2dp"
+        android:src="@drawable/minus_svgrepo_com"
+        app:layout_constraintBottom_toBottomOf="@+id/dieAmountEditText"
+        app:layout_constraintEnd_toStartOf="@+id/dieAmountEditText"
+        app:layout_constraintTop_toTopOf="@+id/dieAmountEditText" />
+
+    <ImageButton
+        android:id="@+id/bonusPlusButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+
+        android:layout_marginStart="2dp"
+        android:src="@drawable/plus_large_svgrepo_com"
+        app:layout_constraintBottom_toBottomOf="@+id/rollBonusEditText"
+        app:layout_constraintStart_toEndOf="@+id/rollBonusEditText"
+        app:layout_constraintTop_toTopOf="@+id/rollBonusEditText" />
+
+    <ImageButton
+        android:id="@+id/dieAmountPlusButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+
+        android:layout_marginStart="2dp"
+        android:src="@drawable/plus_large_svgrepo_com"
+        app:layout_constraintBottom_toBottomOf="@+id/dieAmountEditText"
+        app:layout_constraintStart_toEndOf="@+id/dieAmountEditText"
+        app:layout_constraintTop_toTopOf="@+id/dieAmountEditText" />
+
+    <Button
+        android:id="@+id/dieAmountInvisibleButton"
+        android:layout_width="63dp"
+        android:layout_height="47dp"
+        android:alpha="0"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="@+id/dieAmountEditText"
+        app:layout_constraintEnd_toEndOf="@+id/dieAmountEditText"
+        app:layout_constraintStart_toStartOf="@+id/dieAmountEditText"
+        app:layout_constraintTop_toTopOf="@+id/dieAmountEditText" />
+
+    <Button
+        android:id="@+id/rollBonusInvisibleButton"
+        android:layout_width="63dp"
+        android:layout_height="47dp"
+        android:text="Button"
+        android:alpha="0"
+        app:layout_constraintBottom_toBottomOf="@+id/rollBonusEditText"
+        app:layout_constraintEnd_toEndOf="@+id/rollBonusEditText"
+        app:layout_constraintStart_toStartOf="@+id/rollBonusEditText"
+        app:layout_constraintTop_toTopOf="@+id/rollBonusEditText" />
+
+    <TextView
+        android:id="@+id/thresholdTextView"
+        android:layout_width="86dp"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:gravity="center"
+        android:text="t0"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.19"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.95" />
+
+    <ImageButton
+        android:id="@+id/thresholdPlusButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="2dp"
+        android:src="@drawable/plus_large_svgrepo_com"
+        app:layout_constraintBottom_toBottomOf="@+id/thresholdTextView"
+        app:layout_constraintStart_toEndOf="@+id/thresholdTextView"
+        app:layout_constraintTop_toTopOf="@+id/thresholdTextView" />
+
+    <ImageButton
+        android:id="@+id/thresholdMinusButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="2dp"
+        android:src="@drawable/minus_svgrepo_com"
+        app:layout_constraintBottom_toBottomOf="@+id/thresholdTextView"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/thresholdTextView"
+        app:layout_constraintTop_toTopOf="@+id/thresholdTextView" />
+
+    <Button
+        android:id="@+id/thresholdInvisibleButton"
+        android:layout_width="63dp"
+        android:layout_height="47dp"
+        android:alpha="0"
+        app:layout_constraintBottom_toBottomOf="@+id/thresholdTextView"
+        app:layout_constraintEnd_toEndOf="@+id/thresholdTextView"
+        app:layout_constraintStart_toStartOf="@+id/thresholdTextView"
+        app:layout_constraintTop_toTopOf="@+id/thresholdTextView"
+        app:layout_constraintVertical_bias="0.48000002" />
+
+    <Button
+        android:id="@+id/newDiceButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="     New Dice     "
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/dieAmountPlusButton"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.05" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
