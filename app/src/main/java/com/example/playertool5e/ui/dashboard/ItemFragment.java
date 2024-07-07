@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.playertool5e.R;
 import com.example.playertool5e.databinding.FragmentDashboardBinding;
 
 public class ItemFragment extends Fragment {
@@ -26,7 +27,7 @@ public class ItemFragment extends Fragment {
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
 
         binding.itemsToolbar.textView2.setText("Items");
-            binding.itemsToolbar.inventoryToolbarButton.setVisibility(View.GONE);
+            binding.itemsToolbar.inventoryToolbarButton.setImageResource(R.drawable.return_svgrepo_com);
 
         recyclerView = binding.itemListRecyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
@@ -49,7 +50,6 @@ public class ItemFragment extends Fragment {
 
             com.example.playertool5e.ui.dashboard.ItemFragmentDirections.ActionItemsToInv action = com.example.playertool5e.ui.dashboard.ItemFragmentDirections.actionItemsToInv();
             action.setItems(null);
-
             NavHostFragment.findNavController(ItemFragment.this).navigate(action);
         });
 
@@ -70,6 +70,7 @@ public class ItemFragment extends Fragment {
             NavHostFragment.findNavController(ItemFragment.this).navigate(action);
         });
 
+        binding.itemsToolbar.inventoryToolbarButton.setImageResource(R.drawable.return_svgrepo_com);
         //dashboardViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return binding.getRoot();
     }

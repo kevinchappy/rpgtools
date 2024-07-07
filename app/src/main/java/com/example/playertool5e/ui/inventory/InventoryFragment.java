@@ -23,6 +23,7 @@ import com.example.playertool5e.database.ItemAmount;
 import com.example.playertool5e.database.MyDataStore;
 import com.example.playertool5e.databinding.FragmentInventoryBinding;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
@@ -69,6 +70,7 @@ public class InventoryFragment extends Fragment {
             }
         });
 
+        binding.toolbar.inventoryToolbarButton.setImageResource(R.drawable.wizard_svgrepo_com);
 
         characterRecyclerView = binding.characterDrawerRecyclerView;
         characterRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -100,20 +102,16 @@ public class InventoryFragment extends Fragment {
 
     public void setInventoryRecyclerView(long currentCharacter) {
         ArrayList<ItemAmount> filteredList = new ArrayList<>(itemAmounts);
-        ListIterator<ItemAmount> iter = filteredList.listIterator();
 
-        while(iter.hasNext()){
-            if (iter.next().characterId != currentCharacter){
-                iter.remove();
-            }
-        }
+        filteredList.removeIf(itemAmount -> itemAmount.characterId != currentCharacter);
 
         inventoryAdapter.setData(filteredList);
         inventoryRecyclerView.setAdapter(inventoryAdapter);
-        int total = 0;
+
+        BigInteger total = new BigInteger("0");
         for (ItemAmount itemAmount : filteredList) {
             if (itemAmount.amount != 0) {
-                total += itemAmount.amount * itemAmount.weight;
+                total = total.add(BigInteger.valueOf((long) itemAmount.amount * itemAmount.weight)) ;
             }
         }
         String str = "Weight: " + total;

@@ -6,6 +6,7 @@ import android.text.InputType;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.playertool5e.database.Item;
 import com.example.playertool5e.ui.dashboard.ItemViewModel;
@@ -15,7 +16,8 @@ public class ItemDialog {
     public ItemDialog(Context context, ItemViewModel itemViewModel) {
         extracted(context, itemViewModel, new EditText(context), new EditText(context), -1, false);
     }
-    public ItemDialog(Context context, ItemViewModel itemViewModel, String name, int weight, long id){
+
+    public ItemDialog(Context context, ItemViewModel itemViewModel, String name, int weight, long id) {
         EditText inputName = new EditText(context);
         inputName.setText(name);
         EditText inputWeight = new EditText(context);
@@ -58,21 +60,26 @@ public class ItemDialog {
                 nameFilled = false;
 
             }
-            if (weightFilled && nameFilled) {
-                int weight = Integer.parseInt(inputWeight.getText().toString());
-                String name = inputName.getText().toString();
+            try {
+                if (weightFilled && nameFilled) {
+                    int weight = Integer.parseInt(inputWeight.getText().toString());
+                    String name = inputName.getText().toString();
 
-                if (weight > 9999) {
-                    weight = 9999;
+                    if (weight > 9999) {
+                        weight = 9999;
+                    }
+                    if (weight < 0) {
+                        weight = 0;
+                    }
+                    if (edit) {
+                        itemViewModel.editItem(id, name, weight);
+                    } else {
+                        itemViewModel.insertNewItem(new Item(name, weight));
+                    }
                 }
-                if (weight < 0) {
-                    weight = 0;
-                }
-                if (edit){
-                    itemViewModel.editItem(id, name, weight);
-                }else {
-                    itemViewModel.insertNewItem(new Item(name, weight));
-                }
+            } catch (NumberFormatException e) {
+                dialog.cancel();
+                Toast.makeText(context, "Please input a number between 0 and 9999", Toast.LENGTH_SHORT).show();
             }
 
         });

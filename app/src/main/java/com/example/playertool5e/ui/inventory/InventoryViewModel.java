@@ -35,8 +35,6 @@ public class InventoryViewModel extends AndroidViewModel {
         db = MyDatabase.getInstance(application.getApplicationContext());
 
 
-        MyDataStore.getInstance(application.getApplicationContext());
-
         itemAmounts = db.allDao().getInventoryWithAmounts();
         characters = db.allDao().getAllCharacters();
 

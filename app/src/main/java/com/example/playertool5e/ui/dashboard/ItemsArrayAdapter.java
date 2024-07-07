@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -85,7 +86,7 @@ public class ItemsArrayAdapter extends RecyclerView.Adapter<ItemsArrayAdapter.It
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
-        private final Button deleteButton;
+        private final ImageButton deleteButton;
         private final Button editButton;
         private final Button selectButton;
         private final TextView weightView;

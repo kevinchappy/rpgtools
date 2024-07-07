@@ -1,5 +1,6 @@
 package com.example.playertool5e;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.playertool5e.database.MyDataStore;
 import com.example.playertool5e.database.MyDatabase;
 import com.example.playertool5e.databinding.ActivityMainBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -49,8 +51,13 @@ public class MainActivity extends AppCompatActivity {
                 R.id.navigation_home, R.id.navigation_inventory)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
-        //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+
+
+
+
     }
 
 
@@ -71,4 +78,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.dispatchTouchEvent( event );
     }
+
+
+
 }

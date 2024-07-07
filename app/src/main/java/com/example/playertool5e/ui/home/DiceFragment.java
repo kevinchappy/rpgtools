@@ -18,12 +18,17 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.playertool5e.R;
+import com.example.playertool5e.database.DiceRoll;
 import com.example.playertool5e.database.DiceRollMacro;
 import com.example.playertool5e.databinding.FragmentHomeBinding;
 
+import java.math.BigInteger;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class DiceFragment extends Fragment {
@@ -44,13 +49,19 @@ public class DiceFragment extends Fragment {
         binding.recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 4));
         binding.recyclerView.setHasFixedSize(true);
 
-        adapter = new MacroArrayAdapter(this.getContext(), diceViewModel, this);
+
+        binding.toolbar.inventoryToolbarButton.setImageResource(R.drawable.log_svgrepo_com);
+        adapter = new MacroArrayAdapter(this.getContext(), this);
 
         binding.toolbar.textView2.setText("Diceroller");
 
         diceViewModel.getMacros().observe(getViewLifecycleOwner(), macros -> {
             adapter.setData(macros);
             binding.recyclerView.setAdapter(adapter);
+        });
+
+        binding.toolbar.inventoryToolbarButton.setOnClickListener(v -> {
+            NavHostFragment.findNavController(DiceFragment.this).navigate(R.id.action_navigation_home_to_navigation_dice_log);
         });
 
         diceViewModel.getRollBonus().observe(getViewLifecycleOwner(), rollBonus -> {
@@ -119,13 +130,13 @@ public class DiceFragment extends Fragment {
         int bonus = diceViewModel.getRollBonus().getValue().intValue();
         int threshold = diceViewModel.getThreshold().getValue().intValue();
         StringBuilder sb = new StringBuilder();
-        long result = 0;
+        BigInteger result = new BigInteger("0");
 
         if (threshold > 0) {
             for(int i = 0; i < diceAmount; i++){
                 long roll = ThreadLocalRandom.current().nextLong(dieSize) + 1 + bonus;
                 if(roll >= threshold){
-                    result++;
+                    result = result.add(BigInteger.valueOf(1));
                 }
                 sb.append(roll).append(", ");
             }
@@ -133,10 +144,10 @@ public class DiceFragment extends Fragment {
         } else {
             for (int i = 0; i < diceAmount; i++) {
                 long roll = ThreadLocalRandom.current().nextLong(dieSize) + 1;
-                result = result + roll;
+                result = result.add(BigInteger.valueOf(roll));
                 sb.append(roll).append(", ");
             }
-            result = result + bonus;
+            result = result.add(BigInteger.valueOf(bonus));
 
 
         }
@@ -146,10 +157,11 @@ public class DiceFragment extends Fragment {
 
 
         buildResultDialog(result, bonus, diceAmount, threshold, dieSize, sb.toString());
+
         //Toast.makeText(getContext(), "Result: " + result + " --- " + sb + " + " + diceViewModel.getRollBonus().getValue(), Toast.LENGTH_SHORT).show();
     }
 
-    private void buildResultDialog(long result, int bonus, int diceAmount, int threshold, long dieSize, String individualDice) {
+    private void buildResultDialog(BigInteger result, int bonus, int diceAmount, int threshold, long dieSize, String individualDice) {
         StringBuilder sb = new StringBuilder();
         sb.append(diceAmount).append("d").append(dieSize);
 
@@ -175,7 +187,7 @@ public class DiceFragment extends Fragment {
         textView1.setTextSize(26);
 
         TextView textView2 = new TextView(getContext());
-        textView2.setText(String.valueOf(result));
+        textView2.setText(result.toString());
         textView2.setGravity(Gravity.CENTER);
         textView2.setTextSize(60);
 
@@ -190,6 +202,7 @@ public class DiceFragment extends Fragment {
         builder.setView(linearLayout);
 
         builder.show();
+        diceViewModel.insertDiceRollResult(new DiceRoll(sb.toString(), result.toString(), individualDice));
     }
 
     private void buildAddNewDiceDialog(){
@@ -226,6 +239,10 @@ public class DiceFragment extends Fragment {
         builder.setNegativeButton("Cancel", ((dialog, which) -> {dialog.cancel();}));
         builder.show();
 
+    }
+
+    public void deleteDice(long id){
+        diceViewModel.deleteDice(id);
     }
 
     @Override

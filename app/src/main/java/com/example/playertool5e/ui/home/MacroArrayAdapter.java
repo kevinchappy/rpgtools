@@ -25,17 +25,15 @@ public class MacroArrayAdapter extends RecyclerView.Adapter<MacroArrayAdapter.Ma
 
     private List<DiceRollMacro> macros;
     private final Context context;
-    private final DiceViewModel viewModel;
     private final DiceFragment fragment;
 
 
-    public MacroArrayAdapter(Context context, DiceViewModel viewModel, DiceFragment fragment){
-        this.viewModel = viewModel;
+    public MacroArrayAdapter(Context context, DiceFragment fragment) {
         this.context = context;
         this.fragment = fragment;
     }
 
-    public void setData(List<DiceRollMacro> newList){
+    public void setData(List<DiceRollMacro> newList) {
         this.macros = newList;
         notifyDataSetChanged();
 
@@ -74,17 +72,15 @@ public class MacroArrayAdapter extends RecyclerView.Adapter<MacroArrayAdapter.Ma
     }
 
 
-    public class MacroViewHolder extends RecyclerView.ViewHolder{
+    public class MacroViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView nameView;
+
         public MacroViewHolder(@NonNull View itemView) {
             super(itemView);
             nameView = itemView.findViewById(R.id.dice_item_textview);
         }
     }
-
-
-
 
 
     private void deleteItem(DiceRollMacro current) {
@@ -93,7 +89,7 @@ public class MacroArrayAdapter extends RecyclerView.Adapter<MacroArrayAdapter.Ma
         builder.setMessage("Are you sure you want to delete this die?");
         builder.setPositiveButton("Confirm",
                 (dialog, which) -> {
-                    viewModel.deleteDice(current.id);
+                    fragment.deleteDice(current.id);
                 });
         builder.setNegativeButton("Cancel", (dialog, which) -> {
         });

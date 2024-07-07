@@ -56,6 +56,7 @@ public class CharacterArrayAdapter extends RecyclerView.Adapter<CharacterArrayAd
             new CharacterDialog(context,viewModel,fragment, current.name, current.id).build();
         });
         holder.invisibleButton.setOnClickListener(v -> {
+            Log.d("datastore", "onBindViewHolder: ");
             MyDataStore.saveValue(MyDataStore.CURRENT_CHARACTER_KEY, current.id);
             fragment.setInventoryRecyclerView(current.id);
             fragment.setName(current.name);

@@ -6,7 +6,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {MyCharacter.class, Item.class, Inventory.class, DiceRollMacro.class}, version = 1)
+@Database(entities = {MyCharacter.class, Item.class, Inventory.class, DiceRollMacro.class, DiceRoll.class}, version = 1)
 public abstract class MyDatabase extends RoomDatabase {
 
     public abstract AllDao allDao();
@@ -18,7 +18,7 @@ public abstract class MyDatabase extends RoomDatabase {
     public synchronized static MyDatabase getInstance(Context context){
         if(INSTANCE == null) {
 
-            INSTANCE = Room.databaseBuilder(context, MyDatabase.class, "rpg_tool_database_1").allowMainThreadQueries().build();
+            INSTANCE = Room.databaseBuilder(context, MyDatabase.class, "rpg_tool_database_2").allowMainThreadQueries().build();
 
         }
         return INSTANCE;

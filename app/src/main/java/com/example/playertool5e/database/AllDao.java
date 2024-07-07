@@ -20,9 +20,12 @@ public interface AllDao {
     long insertDice(DiceRollMacro i);
     @Insert
     void insertMultipleInventories(List<Inventory> inventories);
+    @Insert
+    void insertDiceROll(DiceRoll i);
 
     @Query("SELECT * FROM inventory WHERE character_id = :character_id")
     List<Inventory> getCharacterInventory(long character_id);
+
 
     @Query("SELECT inventory.amount AS amount, item.name AS name, item.weight AS weight, inventory.inventory_id as id, inventory.character_id as characterId " +
             "FROM inventory INNER JOIN item ON inventory.item_id = item.item_id ")
@@ -33,6 +36,9 @@ public interface AllDao {
 
     @Query("Select * FROM dicemacro")
     LiveData<List<DiceRollMacro>> getAllMacros();
+
+    @Query("SELECT * FROM  diceroll")
+    LiveData<List<DiceRoll>> getDiceRolls();
 
     @Query("SELECT * FROM item")
     LiveData<List<Item>> getAllItems();

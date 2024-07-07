@@ -20,7 +20,7 @@ datastore-rxjava3 = { module = "androidx.datastore:datastore-rxjava3", version.r
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version = "1.7.0" }
 lifecycle-livedata = { module = "androidx.lifecycle:lifecycle-livedata", version.ref = "lifecycleLivedataKtx" }
 lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel", version.ref = "lifecycleLivedataKtx" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }

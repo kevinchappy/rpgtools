@@ -140,7 +140,7 @@ public class InventoryArrayAdapter extends RecyclerView.Adapter<InventoryArrayAd
         private final TextView nameView;
         //private final TextView countView;
         private final TextView weightView;
-        private final Button button;
+        private final ImageButton button;
         private final ImageButton plusButton;
         private final ImageButton minusButton;
         private final EditText editText;
