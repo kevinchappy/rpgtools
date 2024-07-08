@@ -27,7 +27,7 @@
 
     <fragment
         android:id="@+id/navigation_items"
-        android:name="com.example.playertool5e.ui.dashboard.ItemFragment"
+        android:name="com.example.playertool5e.ui.items.ItemFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" >
         <action

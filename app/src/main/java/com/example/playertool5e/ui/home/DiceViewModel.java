@@ -72,6 +72,14 @@ public class DiceViewModel extends AndroidViewModel {
         });
     }
 
+    public void nukeDiceLog(){
+        MainActivity.executor.execute(() -> {
+            db.allDao().nukeDiceLog();
+        });
+
+
+    }
+
     public MutableLiveData<Integer> getdiceAmount() {
         return diceAmount;
     }

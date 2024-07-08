@@ -1,6 +1,8 @@
 package com.example.playertool5e.ui.home;
 
 import androidx.fragment.app.Fragment;
+
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,8 +51,26 @@ public class LogFragment extends Fragment {
             NavHostFragment.findNavController(LogFragment.this).navigate(R.id.action_navigation_dice_log_to_navigation_home);
         });
         binding.toolbar.inventoryToolbarButton.setImageResource(R.drawable.return_svgrepo_com);
-
+        binding.nukeLogButton.setOnClickListener(v -> {
+            nukeDiceLog();
+        });
         return binding.getRoot();
+    }
+
+
+    private void nukeDiceLog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Clear Log");
+        builder.setMessage("Are you sure you want to delete the entire log?\nThis Cannot be reversed.");
+        builder.setPositiveButton("Confirm",
+                (dialog, which) -> {
+                    diceViewModel.nukeDiceLog();
+                });
+        builder.setNegativeButton("Cancel", (dialog, which) -> {
+            dialog.cancel();
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
 }

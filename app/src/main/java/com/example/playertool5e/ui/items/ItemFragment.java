@@ -1,4 +1,4 @@
-package com.example.playertool5e.ui.dashboard;
+package com.example.playertool5e.ui.items;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -48,7 +48,7 @@ public class ItemFragment extends Fragment {
 
         binding.itemsToolbar.inventoryToolbarButton.setOnClickListener(v -> {
 
-            com.example.playertool5e.ui.dashboard.ItemFragmentDirections.ActionItemsToInv action = com.example.playertool5e.ui.dashboard.ItemFragmentDirections.actionItemsToInv();
+            com.example.playertool5e.ui.items.ItemFragmentDirections.ActionItemsToInv action = com.example.playertool5e.ui.items.ItemFragmentDirections.actionItemsToInv();
             action.setItems(null);
             NavHostFragment.findNavController(ItemFragment.this).navigate(action);
         });
@@ -58,14 +58,14 @@ public class ItemFragment extends Fragment {
         });
 
         binding.cancelButton.setOnClickListener(v -> {
-            com.example.playertool5e.ui.dashboard.ItemFragmentDirections.ActionItemsToInv action = com.example.playertool5e.ui.dashboard.ItemFragmentDirections.actionItemsToInv();
+            com.example.playertool5e.ui.items.ItemFragmentDirections.ActionItemsToInv action = com.example.playertool5e.ui.items.ItemFragmentDirections.actionItemsToInv();
             action.setItems(null);
             NavHostFragment.findNavController(ItemFragment.this).navigate(action);
         });
         binding.confirmButton.setOnClickListener(v -> {
 
             adapter.addToInventory();
-            com.example.playertool5e.ui.dashboard.ItemFragmentDirections.ActionItemsToInv action = com.example.playertool5e.ui.dashboard.ItemFragmentDirections.actionItemsToInv();
+            com.example.playertool5e.ui.items.ItemFragmentDirections.ActionItemsToInv action = com.example.playertool5e.ui.items.ItemFragmentDirections.actionItemsToInv();
             action.setItems(null);
             NavHostFragment.findNavController(ItemFragment.this).navigate(action);
         });

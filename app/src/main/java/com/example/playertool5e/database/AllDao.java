@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
-import androidx.room.Upsert;
 
 import java.util.List;
 @Dao
@@ -37,7 +36,7 @@ public interface AllDao {
     @Query("Select * FROM dicemacro")
     LiveData<List<DiceRollMacro>> getAllMacros();
 
-    @Query("SELECT * FROM  diceroll")
+    @Query("SELECT * FROM  diceroll ORDER BY diceroll_id DESC")
     LiveData<List<DiceRoll>> getDiceRolls();
 
     @Query("SELECT * FROM item")
@@ -81,5 +80,8 @@ public interface AllDao {
      void nukeItem();
     @Query("DELETE FROM character ")
      void nukeCharacter();
+    @Query("DELETE FROM diceroll")
+    void nukeDiceLog();
+
 
 }

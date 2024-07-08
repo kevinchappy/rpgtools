@@ -1,4 +1,4 @@
-package com.example.playertool5e.ui.dashboard;
+package com.example.playertool5e.ui.items;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -19,7 +19,6 @@ import com.example.playertool5e.R;
 import com.example.playertool5e.database.Inventory;
 import com.example.playertool5e.database.Item;
 import com.example.playertool5e.database.MyDataStore;
-import com.example.playertool5e.database.MyDatabase;
 
 import java.util.ArrayList;
 import java.util.List;

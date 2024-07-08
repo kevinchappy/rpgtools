@@ -7,9 +7,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.playertool5e.database.Item;
 import com.example.playertool5e.database.MyCharacter;
-import com.example.playertool5e.ui.dashboard.ItemViewModel;
 
 public class CharacterDialog {
 

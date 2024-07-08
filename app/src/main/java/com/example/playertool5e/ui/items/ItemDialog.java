@@ -1,4 +1,4 @@
-package com.example.playertool5e.ui.dashboard;
+package com.example.playertool5e.ui.items;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -9,7 +9,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.playertool5e.database.Item;
-import com.example.playertool5e.ui.dashboard.ItemViewModel;
 
 public class ItemDialog {
 
