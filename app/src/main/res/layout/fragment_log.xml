@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_marginBottom="?android:attr/actionBarSize"
     android:layout_height="match_parent"
-    tools:context=".ui.home.LogFragment">
+    tools:context=".UI.Dice.LogFragment">
 
     <include
         android:id="@+id/toolbar"

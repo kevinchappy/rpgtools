@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_dice_log"
-        android:name="com.example.playertool5e.ui.home.LogFragment"
+        android:name="com.example.playertool5e.UI.Dice.LogFragment"
         android:label="Log"
         tools:layout="@layout/fragment_log"
         >
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.playertool5e.ui.home.DiceFragment"
+        android:name="com.example.playertool5e.UI.Dice.DiceFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -27,7 +27,7 @@
 
     <fragment
         android:id="@+id/navigation_items"
-        android:name="com.example.playertool5e.ui.items.ItemFragment"
+        android:name="com.example.playertool5e.UI.Items.ItemFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" >
         <action
@@ -37,7 +37,7 @@
 
     <fragment
         android:id="@+id/navigation_inventory"
-        android:name="com.example.playertool5e.ui.inventory.InventoryFragment"
+        android:name="com.example.playertool5e.UI.Inventory.InventoryFragment"
         android:label="@string/title_inventory"
         tools:layout="@layout/fragment_inventory" >
         <action

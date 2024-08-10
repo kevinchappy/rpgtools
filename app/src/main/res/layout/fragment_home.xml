@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:id="@+id/dice_fragment"
     android:layout_marginBottom="?android:attr/actionBarSize"
-    tools:context=".ui.home.DiceFragment">
+    tools:context=".UI.Dice.DiceFragment">
 
     <include
         android:id="@+id/toolbar"

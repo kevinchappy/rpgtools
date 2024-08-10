@@ -1,4 +1,4 @@
-package com.example.playertool5e.ui.inventory;
+package com.example.playertool5e.UI.Inventory;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -7,40 +7,56 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.playertool5e.database.MyCharacter;
+import com.example.playertool5e.Database.MyCharacter;
 
+/**
+ * Class that creates dialogues for adding new characters to database and editing existing entries.
+ */
 public class CharacterDialog {
 
     private final Context context;
-    private final InventoryViewModel inventoryViewModel;
     private final InventoryFragment fragment;
     private final String name;
     private final long id;
     private final boolean edit;
 
-    public CharacterDialog(Context context, InventoryViewModel inventoryViewModel, InventoryFragment fragment) {
+    /**
+     * Instantiates new character dialogue window for adding a new character to the database.
+     *
+     * @param context the context to display the dialogue in
+     * @param fragment the inventory fragment that called this
+     */
+    public CharacterDialog(Context context, InventoryFragment fragment) {
         this.context = context;
-        this.inventoryViewModel = inventoryViewModel;
         this.fragment = fragment;
         this.name = "";
         this.id = -1;
         this.edit = false;
     }
 
-    public CharacterDialog(Context context, InventoryViewModel inventoryViewModel, InventoryFragment fragment, String name, long id) {
+    /**
+     * Instantiates a new character dialogue window editing an existing character.
+     *
+     * @param context the context to display the dialogue in
+     * @param fragment the inventory fragment that called this
+     * @param name name of the character to be edited
+     * @param id the id of the character to be edited.
+     */
+    public CharacterDialog(Context context, InventoryFragment fragment, String name, long id) {
         this.context = context;
-        this.inventoryViewModel = inventoryViewModel;
         this.fragment = fragment;
         this.name = name;
         this.id = id;
         this.edit = true;
     }
 
+    /**
+     * Builds, configures and shows a dialogue window for adding new character to database, or editing an existing one.
+     */
     public void build() {
         EditText inputName = new EditText(context);
         inputName.setText(name);
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        //builder.setTitle("Title");
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         final TextView textView1 = new TextView(context);
@@ -65,23 +81,23 @@ public class CharacterDialog {
             if (nameFilled) {
                 String newName = inputName.getText().toString();
                 if (edit) {
-                    inventoryViewModel.editCharacter(id, newName);
+                    fragment.editCharacter(id, newName);
+
                 } else {
-                    inventoryViewModel.insertNewCharacter(new MyCharacter(newName));
+                    fragment.insertNewCharacter(new MyCharacter(newName));
+
                 }
             }
 
-            //String m_Text = inputName.getText().toString();
         });
         builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
 
         if (edit) {
             builder.setNeutralButton("Delete", (dialog, which) -> {
-                inventoryViewModel.deleteCharacter(id);
-                fragment.setName();
+                fragment.deleteCharacter(id);
+                fragment.resetToolbarName();
             });
         }
         builder.show();
-
     }
 }

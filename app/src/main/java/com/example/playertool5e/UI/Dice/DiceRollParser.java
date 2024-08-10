@@ -1,4 +1,4 @@
-package com.example.playertool5e.ui.home;
+package com.example.playertool5e.UI.Dice;
 
 import java.util.ArrayList;
 import java.util.Collections;

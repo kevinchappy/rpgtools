@@ -1,4 +1,4 @@
-package com.example.playertool5e.ui.home;
+package com.example.playertool5e.UI.Dice;
 
 import androidx.fragment.app.Fragment;
 
@@ -16,22 +16,25 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.playertool5e.R;
 import com.example.playertool5e.databinding.FragmentLogBinding;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-
+/**
+ * Fragment class that shows list of all dice roll log items. Provides button to delete all entries from database.
+ */
 public class LogFragment extends Fragment {
-
     private FragmentLogBinding binding;
-
-    private DiceViewModel diceViewModel;
+    private LogViewModel diceViewModel;
     private LogArrayAdapter adapter;
 
 
+    /**
+     * Creates view model, sets up recyclerview and sets up observers for view model data.
+     * Sets up all ui elements for dice roll log.
+     */
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState){
 
         binding = FragmentLogBinding.inflate(inflater, container, false);
-        diceViewModel = new ViewModelProvider(this).get(DiceViewModel.class);
+        diceViewModel = new ViewModelProvider(this).get(LogViewModel.class);
 
 
         binding.logRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -58,6 +61,10 @@ public class LogFragment extends Fragment {
     }
 
 
+    /**
+     * Builds and shows dialogue for user to confirm if they want to remove all dice rolls from log.
+     * Deletes all dice rolls from the log on confirm, otherwise cancels operation.
+     */
     private void nukeDiceLog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Clear Log");
