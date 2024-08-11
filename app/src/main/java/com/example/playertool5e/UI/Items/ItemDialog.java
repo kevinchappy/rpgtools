@@ -52,7 +52,7 @@ public class ItemDialog {
         this. inputName = new EditText(context);
         inputName.setText(name);
         this.inputWeight = new EditText(context);
-        inputWeight.setText(weight);
+        inputWeight.setText(String.valueOf(weight));
         this.id = id;
         this.edit = true;
     }

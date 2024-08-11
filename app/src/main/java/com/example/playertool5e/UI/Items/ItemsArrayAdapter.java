@@ -29,7 +29,7 @@ import java.util.List;
 public class ItemsArrayAdapter extends RecyclerView.Adapter<ItemsArrayAdapter.ItemViewHolder> {
     private List<Item> items;
     private final Context context;
-    private final ItemFragment viewModel;
+    private final ItemFragment fragment;
     private final ArrayList<Long> selected;
 
     /**
@@ -39,7 +39,7 @@ public class ItemsArrayAdapter extends RecyclerView.Adapter<ItemsArrayAdapter.It
      * @param context The context of the fragment
      */
     public ItemsArrayAdapter(ItemFragment fragment, Context context) {
-        this.viewModel = fragment;
+        this.fragment = fragment;
         this.context = context;
         this.selected = new ArrayList<>();
     }
@@ -84,7 +84,7 @@ public class ItemsArrayAdapter extends RecyclerView.Adapter<ItemsArrayAdapter.It
             deleteItem(current);
         });
         holder.editButton.setOnClickListener(v -> {
-            ItemDialog dialog = new ItemDialog(context, viewModel, current.getName(), current.getWeight(), current.getId());
+            ItemDialog dialog = new ItemDialog(context, fragment, current.getName(), current.getWeight(), current.getId());
             dialog.build();
         });
         if (selected.contains(current.id)) {
@@ -115,7 +115,7 @@ public class ItemsArrayAdapter extends RecyclerView.Adapter<ItemsArrayAdapter.It
         builder.setPositiveButton("Confirm",
                 (dialog, which) -> {
                     selected.remove(current.id);
-                    viewModel.deleteItem(current.id);
+                    fragment.deleteItem(current.id);
                 });
         builder.setNegativeButton("Cancel", (dialog, which) -> {
         });
@@ -139,12 +139,12 @@ public class ItemsArrayAdapter extends RecyclerView.Adapter<ItemsArrayAdapter.It
     public void addToInventory() {
         long currentUser = MyDataStore.readValue(MyDataStore.CURRENT_CHARACTER_KEY);
         Log.d("addtoinventory", "addToInventory: " + currentUser);
-        if (viewModel.characterExists(currentUser)) {
+        if (fragment.characterExists(currentUser)) {
             ArrayList<Inventory> toAdd = new ArrayList<>();
             for (long currentItem : selected) {
                 toAdd.add(new Inventory(currentUser, currentItem, 1));
             }
-            viewModel.addItemsToCurrentInventory(toAdd);
+            fragment.addItemsToCurrentInventory(toAdd);
         } else {
             Toast.makeText(context, "Please select a current user in the top right",
                     Toast.LENGTH_SHORT).show();
