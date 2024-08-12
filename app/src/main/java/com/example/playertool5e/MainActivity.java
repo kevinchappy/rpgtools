@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Handles inflating layout, creating database and datastore, and setting up app bar navigation.
+     * Also disables night mode since it has not been implemented.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {

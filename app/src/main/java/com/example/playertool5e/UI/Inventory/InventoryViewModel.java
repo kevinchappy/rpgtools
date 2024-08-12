@@ -84,7 +84,6 @@ public class InventoryViewModel extends AndroidViewModel {
     public void insertNewCharacter(MyCharacter character) {
         MainActivity.executor.execute(() ->
                 db.allDao().insertCharacter(character));
-
     }
 
     /**

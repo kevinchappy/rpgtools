@@ -1,4 +1,4 @@
-package com.example.playertool5e.UI.Dice;
+package com.example.playertool5e.UI.DiceLog;
 
 import android.view.LayoutInflater;
 import android.view.View;
