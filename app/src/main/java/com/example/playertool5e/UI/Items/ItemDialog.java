@@ -25,31 +25,31 @@ public class ItemDialog {
     /**
      * Constructor for instantiating dialogue window for adding new item to database.
      *
-     * @param context that dialogue is shown in
+     * @param context  that dialogue is shown in
      * @param fragment ItemFragment that created dialogue
      */
     public ItemDialog(Context context, ItemFragment fragment) {
         this.context = context;
         this.fragment = fragment;
-        this. inputName = new EditText(context);
+        this.inputName = new EditText(context);
         this.inputWeight = new EditText(context);
         this.id = -1;
         this.edit = false;
     }
 
     /**
-     *Constructor for instantiating dialogue window for editing existing database entry.
+     * Constructor for instantiating dialogue window for editing existing database entry.
      *
-     * @param context that dialogue is shown in
+     * @param context  that dialogue is shown in
      * @param fragment ItemFragment that created dialogue
-     * @param name name of item to be edited
-     * @param weight weight of item to be edited
-     * @param id id of item to be edited
+     * @param name     name of item to be edited
+     * @param weight   weight of item to be edited
+     * @param id       id of item to be edited
      */
     public ItemDialog(Context context, ItemFragment fragment, String name, int weight, long id) {
         this.context = context;
         this.fragment = fragment;
-        this. inputName = new EditText(context);
+        this.inputName = new EditText(context);
         inputName.setText(name);
         this.inputWeight = new EditText(context);
         inputWeight.setText(String.valueOf(weight));

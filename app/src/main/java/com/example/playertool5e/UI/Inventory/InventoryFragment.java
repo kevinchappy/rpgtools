@@ -91,9 +91,9 @@ public class InventoryFragment extends Fragment {
             long currentCharacter = MyDataStore.readValue(MyDataStore.CURRENT_CHARACTER_KEY);
 
             setInventoryRecyclerView(currentCharacter);
-            if (inventoryViewModel.characterExists(currentCharacter)){
+            if (inventoryViewModel.characterExists(currentCharacter)) {
                 setName(inventoryViewModel.getCharacterName(currentCharacter));
-            }else {
+            } else {
                 resetToolbarName();
             }
         });
@@ -111,7 +111,7 @@ public class InventoryFragment extends Fragment {
             drawerLayout.openDrawer(GravityCompat.END);
         });
         binding.newCharacterButton.setOnClickListener(v -> {
-            new CharacterDialog(this.getContext(),this).build();
+            new CharacterDialog(this.getContext(), this).build();
         });
     }
 
@@ -131,7 +131,7 @@ public class InventoryFragment extends Fragment {
         BigInteger total = new BigInteger("0");
         for (ItemAmount itemAmount : filteredList) {
             if (itemAmount.amount != 0) {
-                total = total.add(BigInteger.valueOf((long) itemAmount.amount * itemAmount.weight)) ;
+                total = total.add(BigInteger.valueOf((long) itemAmount.amount * itemAmount.weight));
             }
         }
         String str = "Weight: " + total;
@@ -143,11 +143,11 @@ public class InventoryFragment extends Fragment {
      *
      * @param name The name of the character's whose name to display in toolbar
      */
-    public void setName(String name){
+    public void setName(String name) {
         String str = "";
-        if (name.charAt(name.length() - 1) == 's'){
+        if (name.charAt(name.length() - 1) == 's') {
             str = name + "' Inventory";
-        }else {
+        } else {
             str = name + "'s Inventory";
         }
         binding.toolbar.textView2.setText(str);
@@ -156,24 +156,24 @@ public class InventoryFragment extends Fragment {
     /**
      * Sets the toolbar text default value
      */
-    public void resetToolbarName(){
+    public void resetToolbarName() {
         binding.toolbar.textView2.setText("Inventory");
     }
 
     /**
      * Closes the character drawer
      */
-    public void closeDrawer(){
+    public void closeDrawer() {
         drawerLayout.closeDrawer(GravityCompat.END);
     }
 
     /**
      * Edits the name of a character in the database by their id.
      *
-     * @param id The id of the character to be edited
+     * @param id      The id of the character to be edited
      * @param newName The new name of the specified character.
      */
-    public void editCharacter (long id, String newName){
+    public void editCharacter(long id, String newName) {
         inventoryViewModel.editCharacter(id, newName);
     }
 
@@ -182,7 +182,7 @@ public class InventoryFragment extends Fragment {
      *
      * @param character The character to insert into the database
      */
-    public void insertNewCharacter (MyCharacter character){
+    public void insertNewCharacter(MyCharacter character) {
         inventoryViewModel.insertNewCharacter(character);
     }
 
@@ -191,7 +191,7 @@ public class InventoryFragment extends Fragment {
      *
      * @param id The id of the character to be deleted.
      */
-    public void deleteCharacter(long id){
+    public void deleteCharacter(long id) {
         inventoryViewModel.deleteCharacter(id);
     }
 
@@ -199,7 +199,7 @@ public class InventoryFragment extends Fragment {
      * Updates the amount of an item that a character has.
      *
      * @param id the id of the inventory entry
-     * @param i The new amount of the item
+     * @param i  The new amount of the item
      */
     public void updateInventoryAmount(long id, int i) {
         inventoryViewModel.updateInventoryAmount(id, i);

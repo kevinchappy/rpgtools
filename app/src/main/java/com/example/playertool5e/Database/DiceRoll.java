@@ -10,14 +10,15 @@ import androidx.room.PrimaryKey;
  */
 @Entity(tableName = "diceroll")
 public class DiceRoll {
-    @PrimaryKey (autoGenerate = true)
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "diceroll_id")
     public long id;
 
     /**
      * Instantiates new dice roll log entry for database.
      */
-    public DiceRoll(){}
+    public DiceRoll() {
+    }
 
     @ColumnInfo(name = "formula")
     public String formula;
@@ -30,14 +31,14 @@ public class DiceRoll {
 
 
     /**
-     *Instantiates new dice roll log entry.
+     * Instantiates new dice roll log entry.
      *
-     * @param formula The dice and modifiers of log entry
-     * @param result The resulting number of dice roll
+     * @param formula        The dice and modifiers of log entry
+     * @param result         The resulting number of dice roll
      * @param individualDice The result of each individual dice roll
      */
     @Ignore
-    public DiceRoll(String formula, String result, String individualDice){
+    public DiceRoll(String formula, String result, String individualDice) {
         this.formula = formula;
         this.result = result;
         this.individualDice = individualDice;

@@ -10,7 +10,7 @@ import androidx.room.PrimaryKey;
  */
 @Entity(tableName = "item")
 public class Item {
-    @PrimaryKey (autoGenerate = true)
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "item_id")
     public long id;
 
@@ -24,16 +24,17 @@ public class Item {
     /**
      * Instantiates new Item object for database.
      */
-    public Item(){}
+    public Item() {
+    }
 
     /**
      * Instantiates new Item object.
      *
-     * @param name name of item
+     * @param name   name of item
      * @param weight weight of item
      */
     @Ignore
-    public Item(String name, int weight){
+    public Item(String name, int weight) {
         this.name = name;
         this.weight = weight;
 

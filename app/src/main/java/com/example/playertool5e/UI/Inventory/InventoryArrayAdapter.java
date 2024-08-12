@@ -33,18 +33,19 @@ public class InventoryArrayAdapter extends RecyclerView.Adapter<InventoryArrayAd
      * Initiates new InventoryArrayAdapter.
      *
      * @param fragment The fragment that contains the recyclerview
-     * @param context The context of the fragment
+     * @param context  The context of the fragment
      */
-    public InventoryArrayAdapter(InventoryFragment fragment, Context context){
+    public InventoryArrayAdapter(InventoryFragment fragment, Context context) {
         this.fragment = fragment;
         this.context = context;
     }
 
     /**
      * Sets the data of the item amounts list. Notifies all observers that the data has changed.
+     *
      * @param newList the new list to set as the data
      */
-    public void setData(List<ItemAmount> newList){
+    public void setData(List<ItemAmount> newList) {
         this.itemAmounts = newList;
         notifyDataSetChanged();
     }
@@ -64,7 +65,7 @@ public class InventoryArrayAdapter extends RecyclerView.Adapter<InventoryArrayAd
      * Sets ui elements to represent the data of the items and amounts. Sets listeners for the buttons
      * and edit text in the items.
      *
-     * @param holder The ViewHolder which represents the contents of the item at the given position.
+     * @param holder   The ViewHolder which represents the contents of the item at the given position.
      * @param position The position of the item within the adapter's data set.
      */
     @Override
@@ -81,14 +82,14 @@ public class InventoryArrayAdapter extends RecyclerView.Adapter<InventoryArrayAd
         holder.editText.setOnFocusChangeListener((v, hasFocus) -> {
             if (!hasFocus) {
                 updateAmount(holder, v, current);
-                Log.d("focus" , "unfocused");
+                Log.d("focus", "unfocused");
             } else {
                 Log.d("focus", "focused");
             }
         });
 
         holder.editText.setOnEditorActionListener((v, actionId, event) -> {
-            if (actionId == EditorInfo.IME_ACTION_DONE){
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
                 updateAmount(holder, v, current);
                 holder.editText.clearFocus();
                 return true;
@@ -97,14 +98,14 @@ public class InventoryArrayAdapter extends RecyclerView.Adapter<InventoryArrayAd
         });
 
         holder.plusButton.setOnClickListener(v -> {
-            if(current.amount < 9999){
+            if (current.amount < 9999) {
                 int i = current.amount + 1;
-                fragment.updateInventoryAmount(current.id,i);
+                fragment.updateInventoryAmount(current.id, i);
             }
         });
 
         holder.minusButton.setOnClickListener(v -> {
-            if(current.amount > 0){
+            if (current.amount > 0) {
                 int i = current.amount - 1;
                 fragment.updateInventoryAmount(current.id, i);
             }
@@ -135,20 +136,20 @@ public class InventoryArrayAdapter extends RecyclerView.Adapter<InventoryArrayAd
      * Ensures that the entered item amount is within allowable parameters.
      * Updates the inventory entries amount and closes the on screen keyboard.
      *
-     * @param holder the item's holder
-     * @param v the view
+     * @param holder  the item's holder
+     * @param v       the view
      * @param current the selected
      */
     private void updateAmount(@NonNull InventoryViewHolder holder, View v, ItemAmount current) {
         int i = 0;
         String str = holder.editText.getText().toString();
-        if(!str.isEmpty()){
-            try{
-            i = Integer.parseInt(str);
-                if (i > 9999){
+        if (!str.isEmpty()) {
+            try {
+                i = Integer.parseInt(str);
+                if (i > 9999) {
                     i = 9999;
                 }
-            }catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 i = 9999;
             }
         }
@@ -170,7 +171,7 @@ public class InventoryArrayAdapter extends RecyclerView.Adapter<InventoryArrayAd
     /**
      * Class that holds the ui elements Inventory items in recyclerview.
      */
-    public class InventoryViewHolder extends RecyclerView.ViewHolder{
+    public class InventoryViewHolder extends RecyclerView.ViewHolder {
         private final TextView nameView;
         //private final TextView countView;
         private final TextView weightView;

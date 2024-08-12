@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey;
 /**
  * Class that represents a character entry in database.
  */
-@Entity (tableName = "character")
+@Entity(tableName = "character")
 public class MyCharacter {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "character_id")
@@ -20,7 +20,8 @@ public class MyCharacter {
     /**
      * Instantiates new character for database.
      */
-    public MyCharacter(){}
+    public MyCharacter() {
+    }
 
     /**
      * Instantiates new character.
@@ -28,7 +29,7 @@ public class MyCharacter {
      * @param name the name of the character
      */
     @Ignore
-    public MyCharacter(String name){
+    public MyCharacter(String name) {
         this.name = name;
     }
 

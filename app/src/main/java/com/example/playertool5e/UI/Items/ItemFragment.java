@@ -38,7 +38,7 @@ public class ItemFragment extends Fragment {
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
 
         binding.itemsToolbar.textView2.setText("Items");
-            binding.itemsToolbar.inventoryToolbarButton.setImageResource(R.drawable.return_svgrepo_com);
+        binding.itemsToolbar.inventoryToolbarButton.setImageResource(R.drawable.return_svgrepo_com);
 
         recyclerView = binding.itemListRecyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
@@ -73,8 +73,8 @@ public class ItemFragment extends Fragment {
         });
 
         binding.itemListNewButton.setOnClickListener(v -> {
-           ItemDialog dialog = new ItemDialog(this.getContext(), this);
-           dialog.build();
+            ItemDialog dialog = new ItemDialog(this.getContext(), this);
+            dialog.build();
         });
 
         binding.cancelButton.setOnClickListener(v -> {
@@ -95,12 +95,12 @@ public class ItemFragment extends Fragment {
     /**
      * Edits an existing item in the database.
      *
-     * @param id The id of the item to be edited
-     * @param name The new name of the edited item
+     * @param id     The id of the item to be edited
+     * @param name   The new name of the edited item
      * @param weight The new Weight of the edited item
      */
     public void editItem(long id, String name, int weight) {
-        itemViewModel.editItem(id,name,weight);
+        itemViewModel.editItem(id, name, weight);
     }
 
     /**

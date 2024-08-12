@@ -29,7 +29,7 @@ public class MacroArrayAdapter extends RecyclerView.Adapter<MacroArrayAdapter.Ma
     /**
      * Instantiates new MacroArrayAdapter.
      *
-     * @param context Context the MacroArrayAdapter is in.
+     * @param context  Context the MacroArrayAdapter is in.
      * @param fragment The fragment that contains the recyclerview.
      */
     public MacroArrayAdapter(Context context, DiceFragment fragment) {
@@ -61,7 +61,7 @@ public class MacroArrayAdapter extends RecyclerView.Adapter<MacroArrayAdapter.Ma
     /**
      * Sets the ui elements to represent the selected macro's data. Sets onClickListeners for the item.
      *
-     * @param holder The ViewHolder for the recyclerview item
+     * @param holder   The ViewHolder for the recyclerview item
      * @param position The position of the item within the adapter's data set.
      */
     @Override

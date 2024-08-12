@@ -77,7 +77,7 @@ public class DiceRollParser {
 
         if (strings.length == 1) {
             for (int i = 0; i < amount; i++) {
-                total = total + rand.nextInt(diceSize) +1;
+                total = total + rand.nextInt(diceSize) + 1;
             }
             sb.append(total).append(" + ");
         } else {

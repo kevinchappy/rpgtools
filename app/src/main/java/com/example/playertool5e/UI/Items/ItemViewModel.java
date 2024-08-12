@@ -17,8 +17,8 @@ import java.util.List;
  * View model class that contains the data regarding all items in database.
  */
 public class ItemViewModel extends AndroidViewModel {
-    private LiveData<List<Item>> items;
-    private MyDatabase db;
+    private final LiveData<List<Item>> items;
+    private final MyDatabase db;
 
     /**
      * Instantiates new ItemViewModel.
@@ -33,6 +33,7 @@ public class ItemViewModel extends AndroidViewModel {
 
     /**
      * Gets list of all items in database.
+     *
      * @return LiveDataList of all items
      */
     public LiveData<List<Item>> getItemList() {
@@ -41,9 +42,10 @@ public class ItemViewModel extends AndroidViewModel {
 
     /**
      * Deletes item from database by id.
+     *
      * @param id id of the item to be deleted
      */
-    public void deleteItem(long id){
+    public void deleteItem(long id) {
         MainActivity.executor.execute(() ->
                 db.allDao().deleteItem(id));
     }
@@ -53,9 +55,9 @@ public class ItemViewModel extends AndroidViewModel {
      *
      * @param toAdd list of inventories to add
      */
-    public void addItemsToCurrentInventory(List<Inventory> toAdd){
+    public void addItemsToCurrentInventory(List<Inventory> toAdd) {
         MainActivity.executor.execute(() ->
-        db.allDao().insertMultipleInventories(toAdd));
+                db.allDao().insertMultipleInventories(toAdd));
     }
 
     /**
@@ -63,21 +65,21 @@ public class ItemViewModel extends AndroidViewModel {
      *
      * @param item item to insert
      */
-    public void insertNewItem(Item item){
+    public void insertNewItem(Item item) {
         MainActivity.executor.execute(() ->
-        db.allDao().insertItem(item));
+                db.allDao().insertItem(item));
     }
 
     /**
      * Edits specified item in database by id.
      *
-     * @param id id of item to be edited
-     * @param name New name of the edited item
+     * @param id     id of item to be edited
+     * @param name   New name of the edited item
      * @param weight New weight of the edited item
      */
-    public void editItem(long id, String name, int weight){
+    public void editItem(long id, String name, int weight) {
         MainActivity.executor.execute(() ->
-                db.allDao().updateItem(id,name,weight));
+                db.allDao().updateItem(id, name, weight));
     }
 
     /**
@@ -86,7 +88,7 @@ public class ItemViewModel extends AndroidViewModel {
      * @param id id of the character to check if exists
      * @return 'true' if character exists in database, otherwise 'false'
      */
-    public boolean characterExists(long id){
+    public boolean characterExists(long id) {
         return db.allDao().characterExists(id);
     }
 

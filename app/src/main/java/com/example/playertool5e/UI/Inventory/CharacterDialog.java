@@ -23,7 +23,7 @@ public class CharacterDialog {
     /**
      * Instantiates new character dialogue window for adding a new character to the database.
      *
-     * @param context the context to display the dialogue in
+     * @param context  the context to display the dialogue in
      * @param fragment the inventory fragment that called this
      */
     public CharacterDialog(Context context, InventoryFragment fragment) {
@@ -37,10 +37,10 @@ public class CharacterDialog {
     /**
      * Instantiates a new character dialogue window editing an existing character.
      *
-     * @param context the context to display the dialogue in
+     * @param context  the context to display the dialogue in
      * @param fragment the inventory fragment that called this
-     * @param name name of the character to be edited
-     * @param id the id of the character to be edited.
+     * @param name     name of the character to be edited
+     * @param id       the id of the character to be edited.
      */
     public CharacterDialog(Context context, InventoryFragment fragment, String name, long id) {
         this.context = context;
@@ -69,7 +69,6 @@ public class CharacterDialog {
         linearLayout.addView(inputName);
 
         builder.setView(linearLayout);
-
 
         builder.setPositiveButton("OK", (dialog, which) -> {
             boolean nameFilled = true;

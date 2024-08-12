@@ -31,7 +31,7 @@ public class LogFragment extends Fragment {
      * Sets up all ui elements for dice roll log.
      */
     public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState){
+                             ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentLogBinding.inflate(inflater, container, false);
         diceViewModel = new ViewModelProvider(this).get(LogViewModel.class);
@@ -65,7 +65,7 @@ public class LogFragment extends Fragment {
      * Builds and shows dialogue for user to confirm if they want to remove all dice rolls from log.
      * Deletes all dice rolls from the log on confirm, otherwise cancels operation.
      */
-    private void nukeDiceLog(){
+    private void nukeDiceLog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Clear Log");
         builder.setMessage("Are you sure you want to delete the entire log?\nThis Cannot be reversed.");

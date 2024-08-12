@@ -12,50 +12,51 @@ import androidx.room.PrimaryKey;
  */
 @Entity(tableName = "inventory",
         foreignKeys = {
-        @ForeignKey(
-                entity = Item.class,
-                parentColumns = {"item_id"},
-                childColumns = {"item_id"},
-                onDelete = ForeignKey.CASCADE,
-                onUpdate = ForeignKey.CASCADE
-        ),
-        @ForeignKey(
-                entity = MyCharacter.class,
-                parentColumns = {"character_id"},
-                childColumns = {"character_id"},
-                onDelete = ForeignKey.CASCADE,
-                onUpdate = ForeignKey.CASCADE
-        )
-})
+                @ForeignKey(
+                        entity = Item.class,
+                        parentColumns = {"item_id"},
+                        childColumns = {"item_id"},
+                        onDelete = ForeignKey.CASCADE,
+                        onUpdate = ForeignKey.CASCADE
+                ),
+                @ForeignKey(
+                        entity = MyCharacter.class,
+                        parentColumns = {"character_id"},
+                        childColumns = {"character_id"},
+                        onDelete = ForeignKey.CASCADE,
+                        onUpdate = ForeignKey.CASCADE
+                )
+        })
 public class Inventory {
 
-        @PrimaryKey(autoGenerate = true)
-        @ColumnInfo(name = "inventory_id")
-        public long id;
-        @ColumnInfo(name = "character_id")
-        public long characterId;
-        @ColumnInfo(name = "item_id")
-        public long itemId;
-        @ColumnInfo(name = "amount")
-        public int amount;
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "inventory_id")
+    public long id;
+    @ColumnInfo(name = "character_id")
+    public long characterId;
+    @ColumnInfo(name = "item_id")
+    public long itemId;
+    @ColumnInfo(name = "amount")
+    public int amount;
 
-        /**
-         * Instantiates new Inventory for database.
-         */
-        public Inventory(){}
+    /**
+     * Instantiates new Inventory for database.
+     */
+    public Inventory() {
+    }
 
-        /**
-         * Instantiates new Inventory.
-         *
-         * @param characterId id of character that owns this inventories item
-         * @param itemId id of item that character owns
-         * @param amount the amount of the item that the character has.
-         */
-        @Ignore
-        public Inventory(long characterId, long itemId, int amount){
-                this.characterId = characterId;
-                this.itemId = itemId;
-                this.amount = amount;
-        }
+    /**
+     * Instantiates new Inventory.
+     *
+     * @param characterId id of character that owns this inventories item
+     * @param itemId      id of item that character owns
+     * @param amount      the amount of the item that the character has.
+     */
+    @Ignore
+    public Inventory(long characterId, long itemId, int amount) {
+        this.characterId = characterId;
+        this.itemId = itemId;
+        this.amount = amount;
+    }
 
 }

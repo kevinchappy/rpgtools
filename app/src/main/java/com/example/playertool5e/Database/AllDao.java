@@ -19,7 +19,7 @@ public interface AllDao {
      * @param i item to be inserted
      */
     @Insert
-    void insertItem (Item i);
+    void insertItem(Item i);
 
     /**
      * Inserts new character into database.
@@ -116,7 +116,7 @@ public interface AllDao {
     /**
      * Updates the amount value in specified inventory.
      *
-     * @param id id of inventory
+     * @param id     id of inventory
      * @param amount new amount of item
      */
     @Query("UPDATE inventory SET amount = :amount WHERE inventory_id = :id")
@@ -125,7 +125,7 @@ public interface AllDao {
     /**
      * Updates specified character's name.
      *
-     * @param id id of character
+     * @param id   id of character
      * @param name character's new name
      */
     @Query("UPDATE character SET name = :name WHERE character_id = :id")
@@ -134,8 +134,8 @@ public interface AllDao {
     /**
      * Updates specified item's name and weight.
      *
-     * @param id id of item
-     * @param name item's new name
+     * @param id     id of item
+     * @param name   item's new name
      * @param weight item's new weight
      */
     @Query("UPDATE item SET name = :name, weight = :weight WHERE item_id = :id")

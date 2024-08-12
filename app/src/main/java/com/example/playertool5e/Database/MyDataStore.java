@@ -34,7 +34,7 @@ public final class MyDataStore {
     /**
      * Saves a new value to the datastore.
      *
-     * @param Key the key for the value to be stored
+     * @param Key   the key for the value to be stored
      * @param value the value to be stored
      */
     public static void saveValue(String Key, Long value) {

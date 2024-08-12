@@ -19,7 +19,8 @@ public abstract class MyDatabase extends RoomDatabase {
     /**
      * Instantiates new MyDatabase for database impl.
      */
-    MyDatabase(){}
+    MyDatabase() {
+    }
 
     /**
      * Gets the instance of the database or creates a new one if it does not exist.
@@ -28,8 +29,8 @@ public abstract class MyDatabase extends RoomDatabase {
      * @param context app context
      * @return the instance of the database
      */
-    public synchronized static MyDatabase getInstance(Context context){
-        if(INSTANCE == null) {
+    public synchronized static MyDatabase getInstance(Context context) {
+        if (INSTANCE == null) {
 
             INSTANCE = Room.databaseBuilder(context, MyDatabase.class, "rpg_tool_database_2").allowMainThreadQueries().build();
 

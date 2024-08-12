@@ -19,7 +19,7 @@ public class ItemAmount {
      */
     @NonNull
     @Override
-    public String toString(){
+    public String toString() {
         return name + ", " + amount + ", " + weight + "\n";
     }
 
@@ -28,7 +28,7 @@ public class ItemAmount {
      *
      * @return the name of the item
      */
-    public String getName(){
+    public String getName() {
         return name;
     }
 }

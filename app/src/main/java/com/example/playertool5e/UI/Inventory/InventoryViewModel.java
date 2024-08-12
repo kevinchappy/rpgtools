@@ -18,9 +18,9 @@ import java.util.List;
  * View model class that handles the data regarding character inventories and holds methods for database calls.
  */
 public class InventoryViewModel extends AndroidViewModel {
-    private LiveData<List<ItemAmount>> itemAmounts;
-    private LiveData<List<MyCharacter>> characters;
-    private MyDatabase db;
+    private final LiveData<List<ItemAmount>> itemAmounts;
+    private final LiveData<List<MyCharacter>> characters;
+    private final MyDatabase db;
 
     /**
      * Instantiates new InventoryViewModel
@@ -67,7 +67,7 @@ public class InventoryViewModel extends AndroidViewModel {
     /**
      * Updates the amount of an item that a character has.
      *
-     * @param id the id of the inventory entry
+     * @param id     the id of the inventory entry
      * @param amount The new amount of the item
      */
     public void updateInventoryAmount(long id, int amount) {
@@ -89,7 +89,7 @@ public class InventoryViewModel extends AndroidViewModel {
     /**
      * Edits name of specified character in database.
      *
-     * @param id the id of the character to be edited
+     * @param id   the id of the character to be edited
      * @param name The new name for the character
      */
     public void editCharacter(long id, String name) {

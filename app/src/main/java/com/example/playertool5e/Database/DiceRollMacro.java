@@ -20,7 +20,8 @@ public class DiceRollMacro {
     /**
      * Instantiates new DiceRollMacro for database.
      */
-    public DiceRollMacro(){}
+    public DiceRollMacro() {
+    }
 
     /**
      * Instantiates new DiceRollMacro
@@ -28,7 +29,7 @@ public class DiceRollMacro {
      * @param dieSize size of die that is rolled with the macro.
      */
     @Ignore
-    public DiceRollMacro(long dieSize){
+    public DiceRollMacro(long dieSize) {
         this.dieSize = dieSize;
 
     }

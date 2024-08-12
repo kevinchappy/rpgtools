@@ -36,7 +36,7 @@ public class ItemsArrayAdapter extends RecyclerView.Adapter<ItemsArrayAdapter.It
      * Instantiates new ItemsArrayAdapter.
      *
      * @param fragment The fragment that contains the recyclerview
-     * @param context The context of the fragment
+     * @param context  The context of the fragment
      */
     public ItemsArrayAdapter(ItemFragment fragment, Context context) {
         this.fragment = fragment;
@@ -69,7 +69,7 @@ public class ItemsArrayAdapter extends RecyclerView.Adapter<ItemsArrayAdapter.It
      * Sets ui elements to represent the data of the items. Sets listeners for the buttons.
      * Each item can be toggled to be selected and added to a characters inventory.
      *
-     * @param holder The ViewHolder which represents the contents of the item at the given position.
+     * @param holder   The ViewHolder which represents the contents of the item at the given position.
      * @param position The position of the item within the adapter's data set.
      */
     @Override

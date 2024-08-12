@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,10 +28,10 @@ public class CharacterArrayAdapter extends RecyclerView.Adapter<CharacterArrayAd
     /**
      * Instantiates new CharacterArrayAdapter.
      *
-     * @param context The context of the fragment that contains the recyclerview
+     * @param context  The context of the fragment that contains the recyclerview
      * @param fragment The inventory fragment that contains the recyclerview
      */
-    public CharacterArrayAdapter( Context context, InventoryFragment fragment){
+    public CharacterArrayAdapter(Context context, InventoryFragment fragment) {
         this.context = context;
         this.fragment = fragment;
     }
@@ -40,7 +41,7 @@ public class CharacterArrayAdapter extends RecyclerView.Adapter<CharacterArrayAd
      *
      * @param newList the list of data to set in the recyclerview
      */
-    public void setData(List<MyCharacter> newList){
+    public void setData(List<MyCharacter> newList) {
         this.characters = newList;
         notifyDataSetChanged();
     }
@@ -59,7 +60,7 @@ public class CharacterArrayAdapter extends RecyclerView.Adapter<CharacterArrayAd
     /**
      * Sets ui elements to represent the data of the character. Sets click listeners for character editing and selection.
      *
-     * @param holder The ViewHolder represent ing the item at the given position.
+     * @param holder   The ViewHolder represent ing the item at the given position.
      * @param position The position of the item within the adapter's data set.
      */
     @Override
@@ -70,7 +71,7 @@ public class CharacterArrayAdapter extends RecyclerView.Adapter<CharacterArrayAd
         Log.d("characterarrayadapter", current.name + ", " + current.id);
 
         holder.characterTextView.setText(current.name);
-        holder.characterEditButton.setOnClickListener(v-> {
+        holder.characterEditButton.setOnClickListener(v -> {
             new CharacterDialog(context, fragment, current.name, current.id).build();
         });
         holder.invisibleButton.setOnClickListener(v -> {
@@ -98,7 +99,7 @@ public class CharacterArrayAdapter extends RecyclerView.Adapter<CharacterArrayAd
     /**
      * Class for holding ui elements for character item in recyclerview.
      */
-    public class CharacterViewHolder extends RecyclerView.ViewHolder{
+    public class CharacterViewHolder extends RecyclerView.ViewHolder {
         private final TextView characterTextView;
         private final Button characterEditButton;
         private final Button invisibleButton;
