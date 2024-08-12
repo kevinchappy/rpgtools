@@ -23,6 +23,7 @@ import com.example.playertool5e.databinding.FragmentInventoryBinding;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -117,23 +118,26 @@ public class InventoryFragment extends Fragment {
 
     /**
      * Filters the recyclerview list so that only items belonging to the current character are displayed.
+     * Sets the weight number to equal the total weight of all displayed items.
      *
-     * @param currentCharacter the id of the current character-
+     * @param currentCharacter the id of the current character
      */
     public void setInventoryRecyclerView(long currentCharacter) {
         ArrayList<ItemAmount> filteredList = new ArrayList<>(itemAmounts);
 
-        filteredList.removeIf(itemAmount -> itemAmount.characterId != currentCharacter);
-
-        inventoryAdapter.setData(filteredList);
-        inventoryRecyclerView.setAdapter(inventoryAdapter);
-
         BigInteger total = new BigInteger("0");
-        for (ItemAmount itemAmount : filteredList) {
-            if (itemAmount.amount != 0) {
+        Iterator<ItemAmount> iter = filteredList.iterator();
+        while (iter.hasNext()){
+            ItemAmount itemAmount = iter.next();
+            if (itemAmount.characterId != currentCharacter){
+                iter.remove();
+            }else {
                 total = total.add(BigInteger.valueOf((long) itemAmount.amount * itemAmount.weight));
             }
         }
+
+        inventoryAdapter.setData(filteredList);
+        inventoryRecyclerView.setAdapter(inventoryAdapter);
         String str = "Weight: " + total;
         binding.textView.setText(str);
     }

@@ -116,7 +116,6 @@ public class DiceFragment extends Fragment {
         });
     }
 
-
     /**
      * Adds modifiers to dice roll and calls method to perform the roll.
      *

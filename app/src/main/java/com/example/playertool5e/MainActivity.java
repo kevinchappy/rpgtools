@@ -30,7 +30,6 @@ import java.util.concurrent.Executors;
 public class MainActivity extends AppCompatActivity {
     private static final int NUMBER_OF_CORES = Runtime.getRuntime().availableProcessors();
     public static final Executor executor = Executors.newFixedThreadPool(NUMBER_OF_CORES);
-
     private ActivityMainBinding binding;
 
     /**

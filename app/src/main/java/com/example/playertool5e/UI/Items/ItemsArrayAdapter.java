@@ -135,6 +135,7 @@ public class ItemsArrayAdapter extends RecyclerView.Adapter<ItemsArrayAdapter.It
 
     /**
      * Adds all selected items to the inventory of the currently selected character.
+     * Shows error message toast if no character is currently selected.
      */
     public void addToInventory() {
         long currentUser = MyDataStore.readValue(MyDataStore.CURRENT_CHARACTER_KEY);
