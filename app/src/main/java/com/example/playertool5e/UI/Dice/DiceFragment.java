@@ -3,7 +3,6 @@ package com.example.playertool5e.UI.Dice;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.text.InputType;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,12 +18,8 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.example.playertool5e.R;
-import com.example.playertool5e.Database.DiceRoll;
 import com.example.playertool5e.Database.DiceRollMacro;
 import com.example.playertool5e.databinding.FragmentHomeBinding;
-
-import java.math.BigInteger;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Fragment class that displays a list of dice that the user can roll. Also allows for creating new
@@ -34,21 +29,20 @@ public class DiceFragment extends Fragment {
     private FragmentHomeBinding binding;
     private MacroArrayAdapter adapter;
     private DiceViewModel diceViewModel;
+    private DiceRoller diceRoller;
 
     /**
      * Inflates view binding and sets up observers for the ViewModels live data.
-     * Sets up recyclerview.
+     * Sets up recyclerview and dice roller.
      */
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         diceViewModel = new ViewModelProvider(this).get(DiceViewModel.class);
-
+        diceRoller = new DiceRoller(this.getContext());
         binding = FragmentHomeBinding.inflate(inflater, container, false);
-
 
         binding.recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 4));
         binding.recyclerView.setHasFixedSize(true);
-
 
         binding.toolbar.inventoryToolbarButton.setImageResource(R.drawable.log_svgrepo_com);
         adapter = new MacroArrayAdapter(this.getContext(), this);
@@ -124,97 +118,15 @@ public class DiceFragment extends Fragment {
 
 
     /**
-     * Calculates the results of a dice roll event.
-     * Gets the roll modifiers from the data in the view model.
-     * If threshold is above 0 it will calculate amount of dice that rolled above the threshold,
-     * otherwise it calculates the sum of all the rolls.
+     * Adds modifiers to dice roll and calls method to perform the roll.
      *
-     * @param dieSize the amount of sides on the dice to be rolled
+     * @param dieSize The amount of sides on the dice to be rolled
      */
     public void rollDice(long dieSize) {
-
         int diceAmount = diceViewModel.getDiceAmount().getValue().intValue();
         int bonus = diceViewModel.getRollBonus().getValue().intValue();
         int threshold = diceViewModel.getThreshold().getValue().intValue();
-        StringBuilder sb = new StringBuilder();
-        BigInteger result = new BigInteger("0");
-
-        if (threshold > 0) {
-            for (int i = 0; i < diceAmount; i++) {
-                long roll = ThreadLocalRandom.current().nextLong(dieSize) + 1 + bonus;
-                if (roll >= threshold) {
-                    result = result.add(BigInteger.valueOf(1));
-                }
-                sb.append(roll).append(", ");
-            }
-
-        } else {
-            for (int i = 0; i < diceAmount; i++) {
-                long roll = ThreadLocalRandom.current().nextLong(dieSize) + 1;
-                result = result.add(BigInteger.valueOf(roll));
-                sb.append(roll).append(", ");
-            }
-            result = result.add(BigInteger.valueOf(bonus));
-        }
-        if (sb.length() > 0) {
-            sb.setLength(sb.length() - 2);
-        }
-
-        buildResultDialog(result, bonus, diceAmount, threshold, dieSize, sb.toString());
-    }
-
-    /**
-     * Builds and configures the dialogue window for a dice roll result.
-     * Inserts the roll into the database.
-     *
-     * @param result The result of the dice roll
-     * @param bonus the bonus added to the roll
-     * @param diceAmount the amount of dice rolled
-     * @param threshold the threshold that each dice had to roll over
-     * @param dieSize the number of sides on the dice rolled
-     * @param individualDice the results of each individual dice roll
-     */
-    private void buildResultDialog(BigInteger result, int bonus, int diceAmount, int threshold, long dieSize, String individualDice) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(diceAmount).append("d").append(dieSize);
-
-        if (bonus > 0) {
-            sb.append("+");
-            sb.append(bonus);
-        } else if (bonus < 0) {
-            sb.append(bonus);
-        }
-
-        if (threshold > 0) {
-            sb.append("t");
-            sb.append(threshold);
-        }
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        LinearLayout linearLayout = new LinearLayout(getContext());
-        linearLayout.setOrientation(LinearLayout.VERTICAL);
-        TextView textView1 = new TextView(getContext());
-        textView1.setText(sb.toString());
-        textView1.setGravity(Gravity.CENTER);
-        textView1.setTextSize(26);
-
-        TextView textView2 = new TextView(getContext());
-        textView2.setText(result.toString());
-        textView2.setGravity(Gravity.CENTER);
-        textView2.setTextSize(60);
-
-        TextView textView3 = new TextView(getContext());
-        textView3.setText(individualDice);
-        textView3.setGravity(Gravity.CENTER);
-        textView3.setTextSize(18);
-
-        linearLayout.addView(textView1);
-        linearLayout.addView(textView2);
-        linearLayout.addView(textView3);
-        builder.setView(linearLayout);
-
-        builder.show();
-        diceViewModel.insertDiceRollResult(new DiceRoll(sb.toString(), result.toString(), individualDice));
+        diceViewModel.insertDiceRollResult(diceRoller.rollDice(dieSize, diceAmount, bonus, threshold));
     }
 
     /**
@@ -258,6 +170,7 @@ public class DiceFragment extends Fragment {
         }));
         builder.show();
     }
+
 
     /**
      * Calls dice deletion method in view model. Deletes dice with specified id.
